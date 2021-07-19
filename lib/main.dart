@@ -1,4 +1,4 @@
-import 'package:amonyatest/src/screens/auth.dart';
+import 'package:amonyatest/src/screens/register.dart';
 import 'package:flutter/cupertino.dart';
 
 void main() {
@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoApp(
-      home: AuthScreen(),
+      home: Register(),
     );
   }
 }
