@@ -21,17 +21,17 @@ class AuthScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            TextfieldWidget(fieldName: "логин или почта"),
+            TextfieldWidget(placeholder: "логин или почта"),
             Container(
               height: 1,
               color: Color(0xFFE0E6ED),
               margin: const EdgeInsets.symmetric(horizontal: 16),
             ),
-            TextfieldWidget(fieldName: "пароль"),
+            TextfieldWidget(placeholder: "пароль"),
             SizedBox(height: 32),
-            BtnButton(titleButton: "Войти", onPressed: () {}),
+            BtnButton(title: "Войти", onPressed: () {}),
             SizedBox(height: 19),
-            BtnButton(titleButton: "Зарегистрироваться", onPressed: () {})
+            BtnButton(title: "Зарегистрироваться", onPressed: () {})
           ],
         ),
       ),
