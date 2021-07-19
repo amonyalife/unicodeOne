@@ -1,4 +1,3 @@
-import 'package:amonyatest/src/common/utils/app_colors.dart';
 import 'package:amonyatest/src/common/utils/app_routes.dart';
 import 'package:amonyatest/src/common/widgets/btn_button/btn_Button.dart';
 import 'package:amonyatest/src/common/widgets/divider/divider.dart';
@@ -12,7 +11,6 @@ class AuthScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      backgroundColor: AppColor.scaffoldColor,
       navigationBar: CupertinoNavigationBar(
         border: Border(),
         backgroundColor: CupertinoColors.white,

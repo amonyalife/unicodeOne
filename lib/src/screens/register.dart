@@ -1,16 +1,14 @@
-import 'package:amonyatest/src/common/utils/app_colors.dart';
 import 'package:amonyatest/src/common/widgets/btn_button/btn_Button.dart';
 import 'package:amonyatest/src/common/widgets/divider/divider.dart';
 import 'package:amonyatest/src/common/widgets/textfield/txt_TextField.dart';
 import 'package:flutter/cupertino.dart';
 
-class Register extends StatelessWidget {
-  const Register({Key? key}) : super(key: key);
+class RegisterScreen extends StatelessWidget {
+  const RegisterScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      backgroundColor: AppColor.scaffoldColor,
       navigationBar: CupertinoNavigationBar(
         backgroundColor: CupertinoColors.white,
         middle: Text('Регистрация'),
