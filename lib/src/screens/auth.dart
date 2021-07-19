@@ -1,4 +1,5 @@
 import 'package:amonyatest/src/common/utils/app_colors.dart';
+import 'package:amonyatest/src/common/utils/app_routes.dart';
 import 'package:amonyatest/src/common/widgets/btn_button/btn_Button.dart';
 import 'package:amonyatest/src/common/widgets/divider/divider.dart';
 import 'package:amonyatest/src/common/widgets/textfield/txt_TextField.dart';
@@ -28,7 +29,12 @@ class AuthScreen extends StatelessWidget {
             SizedBox(height: 32),
             BtnButton(title: "Войти", onPressed: () {}),
             SizedBox(height: 19),
-            BtnButton(title: "Зарегистрироваться", onPressed: () {})
+            BtnButton(
+              title: "Зарегистрироваться",
+              onPressed: () {
+                Navigator.pushNamed(context, RegisterRoute);
+              },
+            ),
           ],
         ),
       ),

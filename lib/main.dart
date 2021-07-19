@@ -1,4 +1,5 @@
-import 'package:amonyatest/src/screens/register.dart';
+import 'package:amonyatest/src/common/utils/app_routes.dart';
+import 'package:amonyatest/src/screens/auth.dart';
 import 'package:flutter/cupertino.dart';
 
 void main() {
@@ -10,7 +11,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoApp(
-      home: Register(),
+      onGenerateRoute: AppRouter.generateRoute,
+      home: AuthScreen(),
     );
   }
 }
