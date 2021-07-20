@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 class TextfieldWidget extends StatelessWidget {
   final String placeholder;
   final bool isPassword;
-  final IconData? iconField;
+  final Widget? iconField;
 
-  TextfieldWidget({
-    Key? key,
-    required this.placeholder,
-    this.isPassword = false,
-    this.iconField,
-  }) : super(key: key);
+  TextfieldWidget(
+      {Key? key,
+      required this.placeholder,
+      this.isPassword = false,
+      this.iconField})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +21,7 @@ class TextfieldWidget extends StatelessWidget {
           ? Container()
           : Padding(
               padding: const EdgeInsets.only(right: 19.0),
-              child: Icon(
-                iconField,
-                color: Colors.black,
-              ),
+              child: iconField,
             ),
       obscureText: isPassword,
       placeholder: placeholder,

@@ -33,8 +33,10 @@ class RegisterScreen extends StatelessWidget {
                   TextfieldWidget(
                     isPassword: true,
                     placeholder: "Пароль",
-                    iconField: CupertinoIcons.eye_slash_fill,
-                  ),
+                    iconField: Icon(
+                      CupertinoIcons.eye_slash_fill,
+                    ),
+                  )
                 ],
               ),
             ),

@@ -1,6 +1,6 @@
 import 'package:amonyatest/src/common/utils/app_colors.dart';
 import 'package:amonyatest/src/common/utils/app_routes.dart';
-import 'package:amonyatest/src/screens/auth.dart';
+import 'package:amonyatest/src/screens/auth_Screen.dart';
 import 'package:flutter/cupertino.dart';
 
 void main() {
