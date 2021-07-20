@@ -2,11 +2,10 @@ import 'package:amonyatest/src/common/utils/app_colors.dart';
 import 'package:flutter/cupertino.dart';
 
 class BtnButton extends StatelessWidget {
-  final String titleButton;
+  final String title;
   final VoidCallback onPressed;
 
-  const BtnButton(
-      {Key? key, required this.titleButton, required this.onPressed})
+  const BtnButton({Key? key, required this.title, required this.onPressed})
       : super(key: key);
 
   @override
@@ -17,7 +16,7 @@ class BtnButton extends StatelessWidget {
         color: AppColor.btnColor,
         padding: EdgeInsets.symmetric(vertical: 19),
         child: Text(
-          titleButton,
+          title,
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         onPressed: onPressed,

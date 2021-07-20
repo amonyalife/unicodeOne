@@ -1,4 +1,6 @@
-import 'package:amonyatest/src/screens/auth.dart';
+import 'package:amonyatest/src/common/utils/app_colors.dart';
+import 'package:amonyatest/src/common/utils/app_routes.dart';
+import 'package:amonyatest/src/screens/auth_Screen.dart';
 import 'package:flutter/cupertino.dart';
 
 void main() {
@@ -10,6 +12,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoApp(
+      theme:
+          CupertinoThemeData(scaffoldBackgroundColor: AppColor.scaffoldColor),
+      onGenerateRoute: AppRouter.generateRoute,
       home: AuthScreen(),
     );
   }
