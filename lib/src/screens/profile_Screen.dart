@@ -1,5 +1,4 @@
 import 'package:amonyatest/src/common/utils/app_colors.dart';
-import 'package:amonyatest/src/common/widgets/text/text_Widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -21,34 +20,40 @@ class ProfileScreen extends StatelessWidget {
                 backgroundColor: AppColor.scaffoldColor,
                 radius: 37,
                 child: Icon(
-                  Icons.account_circle_outlined,
+                  CupertinoIcons.arrow_clockwise,
                   size: 74,
-                  color: Colors.black,
+                  color: CupertinoColors.black,
                 ),
               ),
               SizedBox(height: 15),
-              TextWidget(
-                  textData: "Жанибек Амандос",
-                  textSize: 24,
-                  textFontWeight: FontWeight.w600,
-                  textColor: Colors.black),
+              Text(
+                "Жанибек Амандос",
+                style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w600,
+                    color: CupertinoColors.black),
+              ),
               SizedBox(height: 12),
-              TextWidget(
-                  textData: "amandos.zhanibek@mail.ru",
-                  textSize: 16,
-                  textFontWeight: FontWeight.w400,
-                  textColor: AppColor.colorGrey),
+              Text(
+                "amandos.zhanibek@mail.ru",
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                    color: AppColor.colorGrey),
+              ),
               SizedBox(height: 27),
               Container(
                 width: double.infinity,
-                color: Colors.white,
+                color: CupertinoColors.white,
                 child: Padding(
                   padding: const EdgeInsets.only(top: 21, left: 29, bottom: 22),
-                  child: TextWidget(
-                      textData: "Выйти",
-                      textSize: 16,
-                      textFontWeight: FontWeight.w400,
-                      textColor: AppColor.colorRed),
+                  child: Text(
+                    "Выйти",
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                        color: AppColor.colorRed),
+                  ),
                 ),
               )
             ],

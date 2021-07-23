@@ -2,7 +2,6 @@ import 'package:amonyatest/src/common/utils/app_colors.dart';
 import 'package:amonyatest/src/common/utils/app_routes.dart';
 import 'package:amonyatest/src/screens/main_Screen.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 void main() {
   runApp(MyApp());
