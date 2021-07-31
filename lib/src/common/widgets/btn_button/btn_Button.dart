@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 
 class BtnButton extends StatelessWidget {
   final String title;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   const BtnButton({Key? key, required this.title, required this.onPressed})
       : super(key: key);

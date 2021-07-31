@@ -8,6 +8,7 @@ class TextfieldWidget extends StatelessWidget {
   final Widget? iconField;
   final Widget? prefix;
   final Border? border;
+  final TextEditingController? controller;
 
   TextfieldWidget(
       {Key? key,
@@ -15,6 +16,7 @@ class TextfieldWidget extends StatelessWidget {
       this.isPassword = false,
       this.iconField,
       this.border,
+      this.controller,
       this.prefix})
       : super(key: key);
 
@@ -28,6 +30,7 @@ class TextfieldWidget extends StatelessWidget {
                 child: iconField,
               ),
         obscureText: isPassword,
+        controller: controller,
         placeholder: placeholder,
         prefix: prefix,
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
