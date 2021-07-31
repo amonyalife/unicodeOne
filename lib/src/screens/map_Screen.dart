@@ -5,6 +5,10 @@ class MapScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return CupertinoPageScaffold(
+        child: Center(
+            child: Container(
+      child: Text("zdes budet Map Location Restourants"),
+    )));
   }
 }
