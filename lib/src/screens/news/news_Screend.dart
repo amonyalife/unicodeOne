@@ -1,53 +1,79 @@
+import 'package:amonyatest/src/common/models/news_Model.dart';
+
 import 'package:amonyatest/src/common/utils/app_colors.dart';
 import 'package:amonyatest/src/common/utils/app_image.dart';
 import 'package:amonyatest/src/common/utils/app_textSyle.dart';
 import 'package:amonyatest/src/common/widgets/textfield/txt_TextField.dart';
+import 'package:amonyatest/src/screens/news/bloc/news_bloc.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class NewsScreen extends StatelessWidget {
+class NewsScreen extends StatefulWidget {
   const NewsScreen({Key? key}) : super(key: key);
 
   @override
+  _NewsScreenState createState() => _NewsScreenState();
+}
+
+class _NewsScreenState extends State<NewsScreen> {
+  @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-        backgroundColor: AppColor.scaffoldColor,
-        child: SafeArea(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-                  child: TextfieldWidget(
-                    prefix: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                      child: Icon(Icons.search,
-                          color: Color.fromRGBO(146, 146, 146, 2)),
+    return BlocBuilder<NewsBloc, NewsState>(
+      builder: (context, state) {
+        if (state is NewsLoading) {
+          {
+            return CupertinoActivityIndicator();
+          }
+        }
+        if (state is NewsLoaded) {
+          return CupertinoPageScaffold(
+            backgroundColor: AppColor.scaffoldColor,
+            child: SafeArea(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 20),
+                      child: TextfieldWidget(
+                        prefix: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          child: Icon(CupertinoIcons.search,
+                              color: Color.fromRGBO(146, 146, 146, 2)),
+                        ),
+                        placeholder: "Поиск",
+                        border:
+                            Border.all(color: Color.fromRGBO(224, 230, 237, 2)),
+                      ),
                     ),
-                    placeholder: "Поиск",
-                    border: Border.all(color: Color.fromRGBO(224, 230, 237, 2)),
-                  ),
+                    ListView.separated(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemBuilder: (BuildContext context, int index) {
+                          return ListComponentWidgets();
+                        },
+                        separatorBuilder: (BuildContext context, int index) =>
+                            SizedBox(height: 20),
+                        itemCount: state.restaurants.count),
+                  ],
                 ),
-                ListView.separated(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemBuilder: (BuildContext context, int index) {
-                      return ListComponentWidgets();
-                    },
-                    separatorBuilder: (BuildContext context, int index) =>
-                        SizedBox(height: 20),
-                    itemCount: 30),
-              ],
+              ),
             ),
-          ),
-        ));
+          );
+        }
+        if (state is NewsFailed) {
+          Text('Ошибка - данные не загрузились');
+        }
+        return Container();
+      },
+    );
   }
 }
 
 class ListComponentWidgets extends StatelessWidget {
-  const ListComponentWidgets({Key? key}) : super(key: key);
+  final InfoListModel? rest;
+  ListComponentWidgets({Key? key, this.rest}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +98,9 @@ class ListComponentWidgets extends StatelessWidget {
 }
 
 class ContainerDataWidgets extends StatelessWidget {
-  const ContainerDataWidgets({Key? key}) : super(key: key);
+  final InfoListModel? rest;
+  final Coords? coords;
+  ContainerDataWidgets({Key? key, this.rest, this.coords}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +111,7 @@ class ContainerDataWidgets extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-            Text('Мега', style: listName),
+            Text(rest!.title, style: listName),
             SizedBox(height: 4),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,7 +119,7 @@ class ContainerDataWidgets extends StatelessWidget {
               children: [
                 Flexible(
                   child: Text(
-                    "222222222222fdsjfdsjflksdjfksdj222222222222222222222",
+                    rest!.description,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     style: TextStyle(
@@ -110,7 +138,7 @@ class ContainerDataWidgets extends StatelessWidget {
               ],
             ),
             Text(
-              "street Rozybakiev",
+              coords!.addressName,
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
               style: TextStyle(

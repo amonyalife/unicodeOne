@@ -20,28 +20,28 @@ class ProfiledataBloc extends Bloc<ProfiledataEvent, ProfiledataState> {
     if (event is InitialProfileEvent) {
       yield ProfileLoading();
       {
-        // try {
-        Dio dioProfile = Dio();
-        // ignore: unused_local_variable
-        Response responseProfile = await dioProfile.get(
-          'http://api.codeunion.kz/api/v1/auth/login/profile',
-          options: Options(
-            headers: {
-              'Authorization': 'Bearer ${tokensBox.get('access')}',
-            },
-          ),
-        );
-        print(responseProfile.data);
-        UserModel modelUser = UserModel.fromJson(responseProfile.data);
+        try {
+          Dio dioProfile = Dio();
+          // ignore: unused_local_variable
+          Response responseProfile = await dioProfile.get(
+            'http://api.codeunion.kz/api/v1/auth/login/profile',
+            options: Options(
+              headers: {
+                'Authorization': 'Bearer ${tokensBox.get('access')}',
+              },
+            ),
+          );
+          print(responseProfile.data);
+          UserModel modelUser = UserModel.fromJson(responseProfile.data);
 
-        yield ProfileLoad(modelUser);
-        // } on DioError catch (e) {
-        yield ProfileFailed(message: 'данные не загрузились');
-        //   throw e;
-        // } catch (e) {
-        yield ProfileFailed(message: 'Произошла ошибка');
-        //   throw e;
-        // }
+          yield ProfileLoad(modelUser);
+        } on DioError catch (e) {
+          yield ProfileFailed(message: 'данные не загрузились');
+          throw e;
+        } catch (e) {
+          yield ProfileFailed(message: 'Произошла ошибка');
+          throw e;
+        }
       }
     }
   }

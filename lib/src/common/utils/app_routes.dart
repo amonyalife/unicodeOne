@@ -1,5 +1,6 @@
 import 'package:amonyatest/src/screens/auth/auth_Screen.dart';
 import 'package:amonyatest/src/screens/main_Screen.dart';
+import 'package:amonyatest/src/screens/news/bloc/news_bloc.dart';
 import 'package:amonyatest/src/screens/profile/bloc/profiledata_bloc.dart';
 import 'package:amonyatest/src/screens/register/bloc/register_bloc.dart';
 import 'package:amonyatest/src/screens/register/register_Screen.dart';
@@ -36,11 +37,17 @@ class AppRouter {
 
       case MainRoute:
         return CupertinoPageRoute(
-          builder: (context) => BlocProvider(
-            create: (context) => ProfiledataBloc(),
-            child: MainScreen(),
-          ),
-        );
+            builder: (context) => MultiBlocProvider(
+                  providers: [
+                    BlocProvider<ProfiledataBloc>(
+                      create: (BuildContext context) => ProfiledataBloc(),
+                    ),
+                    BlocProvider<NewsBloc>(
+                      create: (BuildContext context) => NewsBloc(),
+                    ),
+                  ],
+                  child: MainScreen(),
+                ));
 
       default:
         return CupertinoPageRoute(

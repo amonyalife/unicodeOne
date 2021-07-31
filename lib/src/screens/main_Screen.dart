@@ -1,7 +1,8 @@
 import 'package:amonyatest/src/common/utils/app_routes.dart';
 import 'package:amonyatest/src/screens/favorite_Screen.dart';
 import 'package:amonyatest/src/screens/map_Screen.dart';
-import 'package:amonyatest/src/screens/news/news_Screen/news_Screend.dart';
+import 'package:amonyatest/src/screens/news/bloc/news_bloc.dart';
+import 'package:amonyatest/src/screens/news/news_Screend.dart';
 import 'package:amonyatest/src/screens/profile/bloc/profiledata_bloc.dart';
 import 'package:amonyatest/src/screens/profile/profile_Screen.dart';
 import 'package:amonyatest/src/screens/register/register_Screen.dart';
@@ -19,6 +20,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     BlocProvider.of<ProfiledataBloc>(context).add(InitialProfileEvent());
+    BlocProvider.of<NewsBloc>(context).add(InitialNews());
     super.initState();
   }
 
