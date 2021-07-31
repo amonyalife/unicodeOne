@@ -1,14 +1,15 @@
-import 'package:amonyatest/src/screens/auth_Screen.dart';
-import 'package:amonyatest/src/screens/favorite_Screen.dart';
-import 'package:amonyatest/src/screens/map_Screen.dart';
-import 'package:amonyatest/src/screens/news_Screend.dart';
-import 'package:amonyatest/src/screens/profile_Screen.dart';
-import 'package:amonyatest/src/screens/register_Screen.dart';
+import 'package:amonyatest/src/screens/auth/auth_Screen.dart';
+import 'package:amonyatest/src/screens/main_Screen.dart';
+import 'package:amonyatest/src/screens/profile/bloc/profiledata_bloc.dart';
+import 'package:amonyatest/src/screens/register/bloc/register_bloc.dart';
+import 'package:amonyatest/src/screens/register/register_Screen.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:amonyatest/src/screens/auth/bloc/log_in_bloc.dart';
 
-const String MainRoute = '/';
+const String MainRoute = '/main';
 
-const String AuthRoute = '/auth/login';
+const String AuthRoute = '/';
 const String RegisterRoute = '/auth/register';
 const String FavoriteRoute = '/main/favorite';
 const String ProfileRoute = '/main/profile';
@@ -20,28 +21,27 @@ class AppRouter {
     switch (routeSettings.name) {
       case AuthRoute:
         return CupertinoPageRoute(
-          builder: (context) => AuthScreen(),
+          builder: (context) => BlocProvider(
+            create: (context) => LogInBloc(),
+            child: AuthScreen(),
+          ),
         );
       case RegisterRoute:
         return CupertinoPageRoute(
-          builder: (context) => RegisterScreen(),
+          builder: (context) => BlocProvider(
+            create: (context) => RegisterBloc(),
+            child: RegisterScreen(),
+          ),
         );
-      case FavoriteRoute:
-        return CupertinoPageRoute(
-          builder: (context) => FavoriteScreen(),
-        );
-      case ProfileRoute:
-        return CupertinoPageRoute(
-          builder: (context) => ProfileScreen(),
-        );
+
       case MainRoute:
         return CupertinoPageRoute(
-          builder: (context) => MapScreen(),
+          builder: (context) => BlocProvider(
+            create: (context) => ProfiledataBloc(),
+            child: MainScreen(),
+          ),
         );
-      case NewsRoute:
-        return CupertinoPageRoute(
-          builder: (context) => NewsScreen(),
-        );
+
       default:
         return CupertinoPageRoute(
           builder: (context) => AuthScreen(),

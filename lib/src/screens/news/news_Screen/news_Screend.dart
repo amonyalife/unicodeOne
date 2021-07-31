@@ -1,6 +1,6 @@
 import 'package:amonyatest/src/common/utils/app_colors.dart';
 import 'package:amonyatest/src/common/utils/app_image.dart';
-import 'package:amonyatest/src/common/widgets/text/text_Widget.dart';
+import 'package:amonyatest/src/common/utils/app_textSyle.dart';
 import 'package:amonyatest/src/common/widgets/textfield/txt_TextField.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +11,7 @@ class NewsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-        backgroundColor: CupertinoColors.white,
+        backgroundColor: AppColor.scaffoldColor,
         child: SafeArea(
           child: SingleChildScrollView(
             child: Column(
@@ -83,43 +83,40 @@ class ContainerDataWidgets extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-            TextWidget(
-              textData: "Мега",
-              textSize: 16,
-              textFontWeight: FontWeight.w700,
-            ),
+            Text('Мега', style: listName),
             SizedBox(height: 4),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Flexible(
-                  child: TextWidget(
-                    textData:
-                        "222222222222fdsjfdsjflksdjfksdj222222222222222222222",
-                    textSize: 13,
-                    textFontWeight: FontWeight.w400,
-                    textColor: AppColor.colorGrey,
-                    textOverflow: TextOverflow.ellipsis,
+                  child: Text(
+                    "222222222222fdsjfdsjflksdjfksdj222222222222222222222",
+                    overflow: TextOverflow.ellipsis,
                     maxLines: 1,
+                    style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w400,
+                        color: AppColor.colorGrey),
                   ),
                 ),
                 Padding(
                     padding: const EdgeInsets.only(right: 24),
                     child: Icon(
-                      Icons.favorite_border,
-                      color: Colors.black,
+                      CupertinoIcons.heart,
+                      color: CupertinoColors.black,
                       size: 27,
                     )),
               ],
             ),
-            SizedBox(height: 1),
-            TextWidget(
-              textData: "street Rozybakiev",
-              textSize: 13,
-              textFontWeight: FontWeight.w400,
-              textColor: AppColor.colorGrey,
-              textOverflow: TextOverflow.ellipsis,
+            Text(
+              "street Rozybakiev",
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+              style: TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w400,
+                  color: AppColor.colorGrey),
             ),
             SizedBox(height: 12),
           ])),
