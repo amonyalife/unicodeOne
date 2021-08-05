@@ -20,7 +20,6 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     BlocProvider.of<ProfiledataBloc>(context).add(InitialProfileEvent());
-    BlocProvider.of<NewsBloc>(context).add(InitialNews());
     super.initState();
   }
 
@@ -55,7 +54,10 @@ class _MainScreenState extends State<MainScreen> {
                   builder: (context) {
                     switch (index) {
                       case 0:
-                        return NewsScreen();
+                        return BlocProvider(
+                          create: (context) => NewsBloc(),
+                          child: NewsScreen(),
+                        );
                       case 1:
                         return MapScreen();
                       case 2:

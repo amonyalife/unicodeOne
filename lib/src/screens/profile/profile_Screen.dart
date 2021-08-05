@@ -40,7 +40,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                   SizedBox(height: 15),
-                  Text(state.userModel.nickName,
+                  Text(state.userModel.nickname ?? '',
                       style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.w600,

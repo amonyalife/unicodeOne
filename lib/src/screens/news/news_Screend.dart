@@ -17,13 +17,17 @@ class NewsScreen extends StatefulWidget {
 
 class _NewsScreenState extends State<NewsScreen> {
   @override
+  void initState() {
+    context.read<NewsBloc>().add(InitialNews());
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocBuilder<NewsBloc, NewsState>(
       builder: (context, state) {
         if (state is NewsLoading) {
-          {
-            return CupertinoActivityIndicator();
-          }
+          return CupertinoActivityIndicator();
         }
         if (state is NewsLoaded) {
           return CupertinoPageScaffold(
@@ -47,15 +51,18 @@ class _NewsScreenState extends State<NewsScreen> {
                       ),
                     ),
                     ListView.separated(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemBuilder: (BuildContext context, int index) {
-                          return ListComponentWidgets();
-                        },
-                        separatorBuilder: (BuildContext context, int index) =>
-                            SizedBox(height: 20),
-                        itemCount: state.restaurants.count),
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemBuilder: (BuildContext context, int index) {
+                        return ListComponentWidgets(
+                          rest: state.restaurants.restaurants[index],
+                        );
+                      },
+                      separatorBuilder: (BuildContext context, int index) =>
+                          SizedBox(height: 20),
+                      itemCount: state.restaurants.restaurants.length,
+                    ),
                   ],
                 ),
               ),
@@ -72,8 +79,14 @@ class _NewsScreenState extends State<NewsScreen> {
 }
 
 class ListComponentWidgets extends StatelessWidget {
-  final InfoListModel? rest;
-  ListComponentWidgets({Key? key, this.rest}) : super(key: key);
+  final InfoListModel rest;
+  final Coords? coords;
+
+  ListComponentWidgets({
+    Key? key,
+    required this.rest,
+    this.coords,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -82,36 +95,48 @@ class ListComponentWidgets extends StatelessWidget {
           color: CupertinoColors.white,
           borderRadius: BorderRadius.all(Radius.circular(14))),
       child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Image(
-              image: AppImage.listImage,
-              fit: BoxFit.cover,
-              height: 150,
-            ),
-            SizedBox(height: 11),
-            ContainerDataWidgets(),
-          ]),
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Image(
+            image: AppImage.listImage,
+            fit: BoxFit.cover,
+            height: 150,
+          ),
+          SizedBox(height: 11),
+          ContainerDataWidgets(
+            rest: rest,
+            coords: coords,
+          ),
+        ],
+      ),
     );
   }
 }
 
 class ContainerDataWidgets extends StatelessWidget {
-  final InfoListModel? rest;
+  final InfoListModel rest;
   final Coords? coords;
-  ContainerDataWidgets({Key? key, this.rest, this.coords}) : super(key: key);
+
+  ContainerDataWidgets({
+    Key? key,
+    required this.rest,
+    this.coords,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 16),
       child: Container(
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-            Text(rest!.title, style: listName),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              rest.title,
+              style: listName,
+            ),
             SizedBox(height: 4),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -119,7 +144,7 @@ class ContainerDataWidgets extends StatelessWidget {
               children: [
                 Flexible(
                   child: Text(
-                    rest!.description,
+                    rest.description,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     style: TextStyle(
@@ -138,7 +163,7 @@ class ContainerDataWidgets extends StatelessWidget {
               ],
             ),
             Text(
-              coords!.addressName,
+              coords?.addressName ?? '',
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
               style: TextStyle(
@@ -147,7 +172,9 @@ class ContainerDataWidgets extends StatelessWidget {
                   color: AppColor.colorGrey),
             ),
             SizedBox(height: 12),
-          ])),
+          ],
+        ),
+      ),
     );
   }
 }

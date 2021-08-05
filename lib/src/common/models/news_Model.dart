@@ -5,10 +5,14 @@ part 'news_Model.g.dart';
 @JsonSerializable()
 class NewsModel {
   final int count;
-  final List<InfoListModel>? restaurants;
+  final List<InfoListModel> restaurants;
   final Coords? coords;
 
-  NewsModel(this.count, this.restaurants, this.coords);
+  NewsModel(
+    this.count,
+    this.restaurants,
+    this.coords,
+  );
   factory NewsModel.fromJson(Map<String, dynamic> json) =>
       _$NewsModelFromJson(json);
   Map<String, dynamic> toJson() => _$NewsModelToJson(this);

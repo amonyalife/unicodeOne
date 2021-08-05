@@ -16,7 +16,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
   Stream<NewsState> mapEventToState(
     NewsEvent event,
   ) async* {
-    if (event is NewsInitial) {
+    if (event is InitialNews) {
       yield NewsLoading();
       try {
         Dio dio = Dio();

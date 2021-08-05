@@ -9,8 +9,8 @@ part of 'news_Model.dart';
 NewsModel _$NewsModelFromJson(Map<String, dynamic> json) {
   return NewsModel(
     json['count'] as int,
-    (json['restaurants'] as List<dynamic>?)
-        ?.map((e) => InfoListModel.fromJson(e as Map<String, dynamic>))
+    (json['restaurants'] as List<dynamic>)
+        .map((e) => InfoListModel.fromJson(e as Map<String, dynamic>))
         .toList(),
     json['coords'] == null
         ? null

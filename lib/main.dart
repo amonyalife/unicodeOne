@@ -39,13 +39,16 @@ class _MyAppState extends State<MyApp> {
     return CupertinoApp(
       debugShowCheckedModeBanner: false,
       theme: CupertinoThemeData(
-          textTheme: CupertinoTextThemeData(
-              textStyle: TextStyle(
-                  fontFamily: FontFamily,
-                  color: CupertinoColors.black,
-                  fontSize: 16)),
-          scaffoldBackgroundColor: AppColor.scaffoldColor,
-          barBackgroundColor: CupertinoColors.white),
+        textTheme: CupertinoTextThemeData(
+          textStyle: TextStyle(
+            fontFamily: FontFamily,
+            color: CupertinoColors.black,
+            fontSize: 16,
+          ),
+        ),
+        scaffoldBackgroundColor: AppColor.scaffoldColor,
+        barBackgroundColor: CupertinoColors.white,
+      ),
       onGenerateRoute: AppRouter.generateRoute,
       initialRoute: initialRoute,
     );

@@ -34,21 +34,17 @@ class AppRouter {
             child: RegisterScreen(),
           ),
         );
-
       case MainRoute:
         return CupertinoPageRoute(
-            builder: (context) => MultiBlocProvider(
-                  providers: [
-                    BlocProvider<ProfiledataBloc>(
-                      create: (BuildContext context) => ProfiledataBloc(),
-                    ),
-                    BlocProvider<NewsBloc>(
-                      create: (BuildContext context) => NewsBloc(),
-                    ),
-                  ],
-                  child: MainScreen(),
-                ));
-
+          builder: (context) => MultiBlocProvider(
+            providers: [
+              BlocProvider<ProfiledataBloc>(
+                create: (BuildContext context) => ProfiledataBloc(),
+              ),
+            ],
+            child: MainScreen(),
+          ),
+        );
       default:
         return CupertinoPageRoute(
           builder: (context) => AuthScreen(),
